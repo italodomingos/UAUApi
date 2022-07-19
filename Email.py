@@ -1,6 +1,7 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import acessos
 
 
 def send_message(text):
@@ -8,12 +9,13 @@ def send_message(text):
     s = smtplib.SMTP(host='smtp.office365.com', port=587)
     s.starttls()
 
-    password = 'imd@2018'
-    s.login("italo.domingos@bambui.com.br", password)
+    password = acessos.senha_outlook
+    login = acessos.login_outlook
+    s.login(login, password)
     msg = MIMEMultipart()
 
-    msg['From'] = 'italo.domingos@bambui.com.br'
-    msg['To'] = 'italo.domingos@bambui.com.br'
+    msg['From'] = login
+    msg['To'] = login
     msg['Subject'] = "Error UAUAPI Update"
 
     msg.attach(MIMEText(text, 'plain'))
